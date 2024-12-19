@@ -8,14 +8,13 @@ include('./components/main.php');
    
 
 <div class="wrapper">
-
-<div id="element" class="hero-body">
+<div id="element" class="hero-body-subject-add">
 <div class="nav-content">
+	
 <h2><font color="white">Teachers List</font></h2>
 	<a class="btn btn-primary"  href="add_teacher.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Teacher</a>
 	<hr>
-	<table class="users-table">
-
+	<table class="center-users-table">
 
 <div class="demo_jui">
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="log" class="jtable">
@@ -30,7 +29,7 @@ include('./components/main.php');
 			</thead>
 			<tbody>
 
-<?php $result=mysqli_query($conn,"select * from teacher") or die(mysqli_error());
+<?php $result=mysqli_query($conn,"select * from teacher") or die(mysqli_error($conn));
 while($row=mysqli_fetch_array($result)){ $id=$row['teacher_id'];
  ?>
 <tr class="del<?php echo $id ?>">
@@ -78,7 +77,7 @@ while($row=mysqli_fetch_array($result)){ $id=$row['teacher_id'];
 
 			</tbody>
 		</table>
-
+</table>
 </div>
 
 
@@ -86,8 +85,6 @@ while($row=mysqli_fetch_array($result)){ $id=$row['teacher_id'];
 
 
 	</div>	
-
-<?php include('footer.php');?>
 </div>
 </div>
 </body>

@@ -6,7 +6,7 @@
                 <h1>Room Assignment System</h1>
             </a>
             <div class="time_top">
-                <font color="orange">
+                <font color="white">
                     <?php
                     // Display the current date
                     $Today = date('Y-m-d'); // Use full year format

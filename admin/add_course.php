@@ -4,50 +4,41 @@ include('./components/header.php');
 include('./connection/dbcon.php'); 
 include('./components/nav-top1.php');
 include('./components/main.php');
+include('./components/side.php');
 ?>
-   
+
 <div class="wrapper">
-<div id="element" class="hero-body-subject-add">
-<div class="nav-content">
-<h2><font color="white">Add Teachers</font></h2>
-	<a class="btn btn-primary"  href="record.php">  <i class=" icon-arrow-left icon-large"></i>&nbsp;Back</a>
+<div id="element" class="hero-body">
+<div class="right-nav-content">
+<h2><font color="white">Add Course Year Section List</font></h2>
+	<a class="btn btn-primary"  href="course.php">  <i class=" icon-arrow-left icon-large"></i>&nbsp;Back</a>
 	<hr>
-	<div class="teacher">
-	   <form id="save_voter" class="form-horizontal" method="POST" action="save_teacher.php">	
+	<form id="save_voter" class="form-horizontal" method="POST" action="save_course.php">	
     <fieldset>
 	</br>
-	<div class="new_voter_margin">
+	<div class="add_subject">
 	<ul class="thumbnails_new_voter">
     <li class="span3">
     <div class="thumbnail_new_voter">
     
 	<div class="control-group">
-    <label class="control-label" for="input01">Name:</label>
+    <label class="control-label" for="input01">Course Year Section:</label>
     <div class="controls">
-    <input type="text" name="Name" class="Name" id="span900">
+    <input type="text" name="CYS" class="CYS" id="span900">
     </div>
     </div>
-	
 	
 	<div class="control-group">
-    <label class="control-label" for="input01">Academic Rank:</label>
+    <label class="control-label" for="input01">Major:</label>
     <div class="controls">
-    <input type="text" name="Academic_Rank" class="Academic_Rank"  id="span900">
+    <input type="text" name="Major" class="Major" id="span900">
     </div>
     </div>
-	
 		
-	<div class="control-group">
-    <label class="control-label" for="input01">Designation:</label>
-    <div class="controls">
-    <input type="text" name="Designation" class="Designation"  id="span900">
-    </div>
-    </div>
-	
 	<div class="control-group">
     <label class="control-label" for="input01">Department:</label>
     <div class="controls">
-   <select name="Department" class="Department"  id="span9009">
+   <select name="Department" class="Department" id="span9009">
 	<option>--Select Department--</option>
 <?php $query=mysqli_query($conn,"select * from departmet")or die(mysqli_error);
 while($dep=mysqli_fetch_array($query)){
@@ -63,18 +54,12 @@ while($dep=mysqli_fetch_array($query)){
 	<div class="control-group">
     <div class="controls">
 	<button id="save_voter" class="btn btn-primary" name="save"><i class="icon-save icon-large"></i>Save</button>
-	
     </div>
     </div>
 	
     </fieldset>
     </form>
 	   
-	  </div>
-	
-		</div>
-		
-
 </div>
 
 	</div>	
@@ -92,7 +77,8 @@ while($dep=mysqli_fetch_array($query)){
 	  </div>
 	  <div class="modal-footer">
 	    <a href="#" class="btn" data-dismiss="modal">No</a>
-	    <a href="index.php" class="btn btn-primary">Yes</a>
+	    <a href="logout.php" class="btn btn-primary">Yes</a>
 		</div>
 		</div>
 		
+	

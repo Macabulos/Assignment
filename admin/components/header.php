@@ -5,7 +5,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="screen">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
-
+<!-- bootstrap -->
+ 
 
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/bootstrap-transition.js"></script>
@@ -116,7 +117,6 @@ oTable = jQuery('#log').dataTable({
                                         }
                                 }
                         }
-
                         // bind mouseover for each tbody row and change cell (td) hover style
                         $('#demoTable tbody tr:not(.stubCell)').bind('mouseover mouseout',
                                 function (e) {
@@ -124,15 +124,7 @@ oTable = jQuery('#log').dataTable({
                                         e.type == 'mouseover' ? $(this).children('td').addClass('hilightRow') : $(this).children('td').removeClass('hilightRow');
                                 }
                         );
-
                 });
-
-
         </script>
-
-		
-	
-
-
 </head>
 

@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 include('./connection/session.php'); 
 include('./components/header.php'); 
 include('./connection/dbcon.php'); 
@@ -16,9 +16,9 @@ $get_id=$_GET['id'];
 
 	
 
-<div id="element" class="hero-body">
+<div id="element" class="hero-body-subject-add">
 
-<div class="right-nav-content">
+<div class="nav-content">
 <h2><font color="white">Edit Teacher</font></h2>
 	<a class="btn btn-primary"  href="record.php">  <i class=" icon-arrow-left icon-large"></i>&nbsp;Back</a>
 	<hr>

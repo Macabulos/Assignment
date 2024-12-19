@@ -5,123 +5,93 @@ include('./connection/dbcon.php');
 include('./components/nav-top1.php');
 include('./components/main.php');
 ?>
-    
+
 <div class="wrapper">
+    <div id="element" class="hero-body-schedule">
+        <h2><font color="white">Class Schedule List</font></h2>
+        <a class="btn btn-primary" href="add_schedule.php">
+            <i class="icon-plus-sign icon-large"></i>&nbsp;Add Class Schedule
+        </a>
+        <hr>
+        <div class="demo_jui">
+            <table cellpadding="0" cellspacing="0" border="0" class="display jtable" id="log">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time Start</th>
+                        <th>Time End</th>
+                        <th>Semester</th>
+                        <th>School Year</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Room</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Fetch all schedules
+                    $query = "SELECT * FROM schedule ORDER BY schedule_id DESC";
+                    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['schedule_id'];
+                        ?>
+                        <tr class="del<?php echo $id ?>">
+                            <td><?php echo htmlspecialchars($row['day']); ?></td>
+                            <td><?php echo htmlspecialchars($row['time']); ?></td>
+                            <td><?php echo htmlspecialchars($row['time_end']); ?></td>
+                            <td><?php echo htmlspecialchars($row['semester']); ?></td>
+	                        <td><?php echo htmlspecialchars($row['sy']); ?></td>
+                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td><?php echo htmlspecialchars($row['teacher']); ?></td>
+                            <td><?php echo htmlspecialchars($row['room']); ?></td>
+                            <td align="center" width="160">
+                                <a class="btn btn-info" href="edit_schedule.php?id=<?php echo $id; ?>">
+                                    <i class="icon-edit icon-large"></i>&nbsp;Edit
+                                </a>
+                                <a class="btn btn-danger" data-toggle="modal" href="#deleteModal<?php echo $id; ?>">
+                                    <i class="icon-trash icon-large"></i>&nbsp;Delete
+                                </a>
 
-<div id="element" class="hero-body-schedule">
-
-
-<h2><font color="white">Class Schedule List</font></h2>
-	<a class="btn btn-primary"  href="add_schedule.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Class Schedule</a>
-					 
-		<div class="pull-right222">
-	
-		<div class="pagination">
-<font color="white">Seacrh Schedule</font>
-<br>
-  <ul>
-    <li><a data-toggle="modal" href="#teacher"><font color="white"><i class="icon-search icon-large"></i>Teacher</font></a></li>
-    <li>
-      <a data-toggle="modal" href="#CYS"><font color="white"><i class="icon-search icon-large"></i>Course Year Section</font></a>
-    </li>
-	 <li>
-      <a data-toggle="modal" href="#room"><font color="white"><i class="icon-search icon-large"></i>Room</font></a>
-    </li>
-  </ul>
-</div>
-</div>
-	
-	<hr>
-	<!-- hi sir ayaw gud sir pag debug  -->
-	 
-<div class="demo_jui">
-		<table cellpadding="0" cellspacing="0" border="0" class="display" id="log" class="jtable">
-			<thead>
-				<tr>
-			
-				<th>Day</th>
-				<th>Time Start</th>
-				<th>Time End</th>
-				<th>Sem</th>
-				<th>AY</th>
-				<th>Course Year Section</th>
-				<th>Subject</th>
-				<th>Teacher</th>
-				<th>room</th>
-				<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-<?php $result=mysqli_query($conn,"select * from schedule where type='' order by schedule_id DESC")or die(mysqli_error());
-while($row=mysqli_fetch_array($result)){ $id=$row['schedule_id'];
-?>
-
-<tr class="del<?php echo $id ?>">
-	<td><?php echo $row['day'];?></td>
-	<td ><?php echo $row['time'];?></td>
-	<td><?php echo $row['time_end'];?></td>	
-	<td><?php echo $row['semester'];?></td>
-	<td><?php echo $row['sy'];?></td>
-	<td><?php echo $row['CYS'];?></td>
-	<td><?php echo $row['subject'];?></td>
-	<td><?php echo $row['teacher'];?></td>
-	<td><?php echo $row['room'];?></td>
-	
-	<td align="center" width="160">
-	<a class="btn btn-info" href="edit_schedule.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
-	
-	
-	
-	
-	<div class="modal hide fade" id="<?php echo $id; ?>">
-	<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal">�</button>
-	      <div class="alert alert-info">
-   <p><font color="gray">Are you Sure you Want to Delete this Schedule?</font></p>
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteModal<?php echo $id; ?>" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Confirm Deletion</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete this schedule?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger" href="delete_schedule.php?id=<?php echo $id; ?>">
+                                                    Yes, Delete
+                                                </a>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal -->
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-	  </div>
-	  <div class="modal-body">
-
-   
-<a class="btn btn-info" href="delete_schedule.php<?php echo '?id='.$id; ?>"><i class="icon-check icon-large"></i>&nbsp;Yes</a>&nbsp;
-	
-	   <a href="#" class="btn" data-dismiss="modal">No</a>
-	  
-  
-	  </div>
-	  <div class="modal-footer">
-	 
-		</div>
-		</div>
-	
-	
-	
-	
-	<a data-toggle="modal" href="#<?php echo $id; ?>" class="btn btn-danger1">  <i class="icon-trash icon-large"></i>&nbsp;Delete</a>
-</td>
-
-
-<?php } ?>
-
-	
-	</tr>
-
-			</tbody>
-	
-		</table>
-		
-		
-		
-
-</div>
 </div>
 
+<?php include('footer.php'); ?>
 
-
-
-
-<?php include('footer.php');?>
 </div>
 
 				<div class="modal hide fade" id="teacher">
@@ -358,7 +328,7 @@ while($sy_row=mysqli_fetch_array($sy_query)){
 		</div>
 				
 		
-</body>
+
 	<div class="modal hide fade" id="myModal">
 	<div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal">�</button>

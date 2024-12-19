@@ -14,7 +14,7 @@
     width: 350px !important;
 }
 .dataTables_wrapper .ui-toolbar {
-    padding: 5px;
+    padding: 15px;
 }
 .dataTables_paginate {
     width: auto;
@@ -45,7 +45,7 @@ table.display thead th div.DataTables_sort_wrapper span {
     position: relative;
 }
 .dataTables_processing {
-    border: 1px solid #DDDDDD;
+    border: 1px solid #ffffff;
     color: #999999;
     font-size: 11px;
     left: 50%;
@@ -126,7 +126,7 @@ table.display td.center {
     background: url("../images/sort_desc_disabled.png") no-repeat scroll right center transparent;
 }
 table.display tr.odd.gradeA {
-    background-color: #DDFFDD;
+    background-color: #ffffff;
 }
 table.display tr.even.gradeA {
     background-color: #EEFFEE;
