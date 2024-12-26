@@ -18,7 +18,8 @@ if (isset($_POST['save'])) {
     $Thursday = isset($_POST['Thursday']) ? $_POST['Thursday'] : '';
     $Friday = isset($_POST['Friday']) ? $_POST['Friday'] : '';
     $Saturday = isset($_POST['Saturday']) ? $_POST['Saturday'] : '';
-    $day = trim($Monday . " " . $Tuesday . " " . $Wednesday . " " . $Thursday . " " . $Friday . " " . $Saturday);
+    $Sunday = isset($_POST['Sunday']) ? $_POST['Sunday'] : '';
+    $day = trim($Monday . " " . $Tuesday . " " . $Wednesday . " " . $Thursday . " " . $Friday . " " . $Saturday . " "  .$Sunday);
     $subject = $_POST['subject'] ?? '';
     $teacher = $_POST['teacher'] ?? '';
     $room = $_POST['room'] ?? '';
@@ -55,6 +56,7 @@ if (isset($_POST['save'])) {
         'Thursday' => $Thursday,
         'Friday' => $Friday,
         'Saturday' => $Saturday,
+        'Sunday' => $Sunday,
     ]);
 
     // Check for room and teacher conflicts
@@ -135,7 +137,7 @@ if (isset($_POST['save'])) {
 
                             <!-- Day Selection -->
                             <div class="control-group">
-                                <label class="control-label" for="input01">Day:</label>
+                                <label class="control-label" for="input01">Day:</label> <br>
                                 <div class="controls">
                                     <div class="day_margin">
                                         Monday:<br>
@@ -143,7 +145,8 @@ if (isset($_POST['save'])) {
                                         Wednesday:<br>
                                         Thursday:<br>
                                         Friday:<br>
-                                        Saturday:
+                                        Saturday: <br>
+                                        Sunday:
                                     </div>
                                     <div class="radio_day">
                                         <input type="checkbox" value="Monday" name="Monday" <?php if (strpos($row['day'], 'Monday') !== false) echo 'checked'; ?>><br>
@@ -151,7 +154,8 @@ if (isset($_POST['save'])) {
                                         <input type="checkbox" value="Wednesday" name="Wednesday" <?php if (strpos($row['day'], 'Wednesday') !== false) echo 'checked'; ?>><br>
                                         <input type="checkbox" value="Thursday" name="Thursday" <?php if (strpos($row['day'], 'Thursday') !== false) echo 'checked'; ?>><br>
                                         <input type="checkbox" value="Friday" name="Friday" <?php if (strpos($row['day'], 'Friday') !== false) echo 'checked'; ?>><br>
-                                        <input type="checkbox" value="Saturday" name="Saturday" <?php if (strpos($row['day'], 'Saturday') !== false) echo 'checked'; ?>>
+                                        <input type="checkbox" value="Saturday" name="Saturday" <?php if (strpos($row['day'], 'Saturday') !== false) echo 'checked'; ?>><br>
+                                        <input type="checkbox" value="Sunday" name="Sunday" <?php if (strpos($row['day'], 'Sunday') !== false) echo 'checked'; ?>>
                                     </div>
                                 </div>
                             </div>

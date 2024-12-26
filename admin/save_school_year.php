@@ -2,40 +2,44 @@
 include('./connection/dbcon.php');
 include('./connection/session.php'); 
 
+if (isset($_POST['save'])) {
+    $sy = $_POST['sy'];
 
-if (isset($_POST['save'])){
+    // Server-side validation: ensure the input matches the format "YYYY-YYYY"
+    if (!preg_match('/^\d{4}-\d{4}$/', $sy)) {
+        ?>
+        <script type="text/javascript">
+        alert('Invalid format. Please enter the school year as YYYY-YYYY.');
+        window.location="add_school_year.php";
+        </script>
+        <?php  
+        exit;
+    }
 
-$sy=$_POST['sy'];
+    // Check if the school year entry already exists
+    $query = mysqli_query($conn, "SELECT * FROM sy WHERE sy='$sy'") or die('Query error.');
+    $count = mysqli_num_rows($query);
 
+    if ($count == 1) {
+        ?>
+        <script type="text/javascript">
+        alert('Entry Already Exists');
+        window.location="add_school_year.php";
+        </script>
+        <?php  
+    } else {
+        // Insert the new school year into the database
+        mysqli_query($conn, "INSERT INTO sy (sy) VALUES ('$sy')") or die(mysqli_error($conn));
 
+        // Log the action into the history table
+        $logout_query = mysqli_query($conn, "SELECT * FROM users WHERE User_id=$id_session");
+        $row = mysqli_fetch_array($logout_query);
+        $type = $row['User_Type'];
 
-$query=mysqli_query($conn,"select * from sy where sy='$sy'")or die('Query error.');
-$rows=mysqli_fetch_array($query);
-$count=mysqli_num_rows($query);
+        mysqli_query($conn, "INSERT INTO history (date, action, data, user)
+        VALUES (NOW(), 'Add Entry School Year', '$sy', '$type')") or die(mysqli_error($conn));
 
-
-if ($count==1){
-?>
-<script type="text/javascript">
-alert('Entry Already Exist');
-window.location="add_school_year.php";
-</script>
-<?php  
-}else{
-
-
-mysqli_query($conn,"insert into sy (sy)
-VALUES('$sy')")or die(mysqli_error());
-
-$logout_query=mysqli_query($conn,"select * from users where User_id=$id_session");
-$row=mysqli_fetch_array($logout_query);
-$type=$row['User_Type'];
-
-
-mysqli_query($conn,"insert into history (date,action,data,user)
-VALUES (NOW(),'Add Entry School Year','$sy','$type')") or die(mysqli_error());
-
-header('location: school_year.php');
-}
+        header('location: school_year.php');
+    }
 }
 ?>

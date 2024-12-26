@@ -22,7 +22,7 @@ include('./components/main.php');
                         <th>Time End</th>
                         <th>Semester</th>
                         <th>School Year</th>
-                        <th>Subject</th>
+                        <th>Subject Code</th>
                         <th>Teacher</th>
                         <th>Room</th>
                         <th>Actions</th>
