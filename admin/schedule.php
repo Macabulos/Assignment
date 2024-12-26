@@ -7,7 +7,7 @@ include('./components/main.php');
 ?>
 
 <div class="wrapper">
-    <div id="element" class="hero-body-schedule">
+    <div id="element" class="hero-body-subject-add">
         <h2><font color="white">Class Schedule List</font></h2>
         <a class="btn btn-primary" href="add_schedule.php">
             <i class="icon-plus-sign icon-large"></i>&nbsp;Add Class Schedule
